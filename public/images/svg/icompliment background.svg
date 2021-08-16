@@ -1,0 +1,33 @@
+<svg className="svg-hero" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="icompliment background" clip-path="url(#clip0)">
+<g id="heart3" filter="url(#filter0_f)">
+<path d="M881 288.006C881 288.006 1032.34 155.015 1149 156.006C1314.2 157.408 1481 324.005 1473 428.005C1465 532.005 1289 580.005 1289 580.005L881 288.006Z" fill="#5517DA"/>
+</g>
+<g id="heart2" filter="url(#filter1_f)">
+<path d="M713 712L969 468L1229 624C1229 624 1021 748 1005 888C989 1028 713 712 713 712Z" fill="#5517DA"/>
+</g>
+<g id="heart1" filter="url(#filter2_f)">
+<path d="M453.497 512.189C410.935 378.407 557.328 256.053 697.497 248.189C813.058 241.706 949.497 404.189 949.497 404.189L645.497 656.189C645.497 656.189 481.911 601.504 453.497 512.189Z" fill="#5517DA"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f" x="599" y="-126" width="1156.28" height="988.005" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="141" result="effect1_foregroundBlur"/>
+</filter>
+<filter id="filter1_f" x="431" y="186" width="1080" height="1019.78" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="141" result="effect1_foregroundBlur"/>
+</filter>
+<filter id="filter2_f" x="164" y="-34" width="1067.5" height="972.189" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="141" result="effect1_foregroundBlur"/>
+</filter>
+<clipPath id="clip0">
+<rect width="1920" height="1080" fill="white"/>
+</clipPath>
+</defs>
+</svg>

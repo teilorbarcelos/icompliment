@@ -1,0 +1,107 @@
+@import 'colors';
+
+h1, h2, h3, h4, h5, h6, p, a {
+    font-family: 'Barlow Condensed', sans-serif;
+    color: $white-normal;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+}
+
+.menu-logo {
+    width: 200px;
+}
+
+.link {
+    padding: 8px 24px;
+    font-size: 24px;
+    position: relative;
+    display: inline-block;
+
+    transition: .5s ease;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        width: 0%;
+        height: 2px;
+        transform: translate(15%, -50%);
+        background-color: $white-normal;
+        transition: .5s ease;
+    }
+
+    &:hover {
+        color: #edeff0af;
+
+        &::after {
+            width: 80%;
+            left: 0;
+        }
+    }
+}
+
+h1 {
+    font-size: 88px;
+    line-height: 100%;
+}
+
+h2 {
+    font-size: 72px;
+    line-height: 120%;
+}
+
+h3 {
+    font-size: 56px;
+    line-height: 130%;
+}
+
+h4 {
+    font-size: 40px;
+    line-height: 140%;
+}
+
+h5 {
+    font-size: 32px;
+    line-height: 150%;
+}
+
+h6 {
+    font-size: 24px;
+    line-height: 160%;
+}
+
+.mask {
+    background: linear-gradient(225deg, #2dc7ed, #538bf0);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+@media screen and (max-width: 960px) {
+    h1 {
+        font-size: 52px;
+    }
+
+    h2 {
+        font-size: 48px;
+    }
+
+    h3 {
+        font-size: 32px;
+    }
+
+    h6 {
+        font-size: 16px;
+    }
+}

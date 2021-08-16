@@ -1,0 +1,61 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@import 'colors';
+@import 'typography';
+
+html,
+body {
+  width: 100%;
+  background-color: $black-dark;
+  overflow-x: hidden;
+}
+
+.right-on-hover:hover {
+  transition: 0.3s ease;
+  transform: translate(3px, 0);
+}
+
+.up-on-hover:hover {
+  transition: 0.3s ease;
+  transform: translate(0, -3px);
+}
+
+.flex-column-on-mobile {
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+  }
+}
+
+.only-mobile {
+  @media screen and (min-width: 960px) {
+    display: none;
+  }
+}
+
+.left {
+  left: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.in-front {
+  position: relative;
+  z-index: 99999;
+}
+
+.border {
+    border: 1px solid red;
+}
+
+@import 'spacing';
+@import 'layout';
