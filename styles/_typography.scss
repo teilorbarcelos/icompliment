@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'spacing';
 
 h1, h2, h3, h4, h5, h6, p, a {
     font-family: 'Barlow Condensed', sans-serif;
@@ -35,7 +36,7 @@ a {
         width: 0%;
         height: 2px;
         transform: translate(15%, -50%);
-        background-color: $white-normal;
+        background-color: $purple-dark;
         transition: .5s ease;
     }
 
@@ -80,9 +81,24 @@ h6 {
 }
 
 .mask {
-    background: linear-gradient(225deg, $purple-light, $purple-dark);
+    background: linear-gradient(225deg, $purple-light, $black-light);
     background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+label {
+    font-size: 24px;
+    color: $purple-light;
+}
+
+input {
+    background-color: $gray-1;
+    border: none;
+    border-radius: 3px;
+    height: 32px;
+    padding: 4px 8px;
+    color: $white-light;
+    margin: $gap-1 0;
 }
 
 .text-center {

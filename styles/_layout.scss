@@ -44,3 +44,20 @@ main {
 
     padding: 0 $gap-3;
 }
+
+.float-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid $purple-dark;
+    padding: $gap-2;
+    border-radius: $gap-2;
+    margin: 0 $gap-1;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    margin: 4px 0;
+}
