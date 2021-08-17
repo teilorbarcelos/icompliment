@@ -8,10 +8,15 @@ h1, h2, h3, h4, h5, h6, p, a {
 
 a {
     text-decoration: none;
+    color: $purple-light;
 }
 
 .menu-logo {
     width: 200px;
+}
+
+.purple-light{
+    color: $purple-light;
 }
 
 .link {
@@ -75,7 +80,7 @@ h6 {
 }
 
 .mask {
-    background: linear-gradient(225deg, #2dc7ed, #538bf0);
+    background: linear-gradient(225deg, $purple-light, $purple-dark);
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }

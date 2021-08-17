@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Background from '../components/Background'
+import Dashboard from '../components/Dashboard'
 
 export default function Home() {
   return (
-
-    <main>
+    <>
 
       {/* HEAD */}
 
@@ -17,8 +17,15 @@ export default function Home() {
         <title>I compliment!</title>
       </Head>
       
+      {/* Background */}
+
       <Background />
 
-    </main>
+      <main>
+
+        <Dashboard />
+
+      </main>
+    </>
   )
 }
