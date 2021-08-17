@@ -1,8 +1,7 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import Background from '../components/Background'
 
-const Home: NextPage = () => {
+export default function Home() {
   return (
 
     <main>
@@ -23,5 +22,3 @@ const Home: NextPage = () => {
     </main>
   )
 }
-
-export default Home
