@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { FormEvent, useState } from 'react'
 import Button1 from './Button1'
-import fetch from 'node-fetch'
 
 
 export default function RegisterForm() {
