@@ -51,13 +51,39 @@ main {
     justify-content: center;
     align-items: center;
     border: 3px solid $purple-dark;
-    padding: $gap-2;
+    padding: $gap-1 $gap-5;
     border-radius: $gap-2;
-    margin: 0 $gap-1;
+    margin: 0 4px;
+
+    @media screen and (max-width: 400px) {
+        width: 95%;
+        padding: $gap-1;
+    }
 }
 
 .input {
     display: flex;
     flex-direction: column;
     margin: 4px 0;
+}
+
+.send-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button1 {
+    background-color: $purple-dark;
+    border: none;
+    padding: 4px 16px;
+    border-radius: 3px;
+    color: $white-dark;
+    cursor: pointer;
+
+    transition: .5s;
+
+    &:hover {
+        opacity: .8;
+    }
 }
