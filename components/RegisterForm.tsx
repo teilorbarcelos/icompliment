@@ -1,9 +1,11 @@
+import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
 import { FormEvent, useState } from 'react'
+import login from '../hooks/login'
 import Button1 from './Button1'
 
-
 export default function RegisterForm() {
+    const router = useRouter()
     const [registerName, setRegisterName] = useState('')
     const [registerEmail, setRegisterEmail] = useState('')
     const [registerPassword, setRegisterPassword] = useState('')
@@ -27,7 +29,25 @@ export default function RegisterForm() {
 
         const result = await response.json()
 
-        console.log(result)
+        // console.log(result)
+        // return
+
+        if(result.error){
+            alert(result.error)
+            return
+        }
+
+        // faz login automaticamente
+
+        const user = {
+            email: registerEmail,
+            password: registerPassword
+        }
+
+        login(user)
+
+        router.push('/')
+
     }
 
     return (
