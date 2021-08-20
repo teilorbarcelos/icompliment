@@ -1,7 +1,6 @@
 import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
 import { FormEvent, useState } from 'react'
-import login from '../hooks/login'
 import Button1 from './Button1'
 
 export default function RegisterForm() {
@@ -43,8 +42,6 @@ export default function RegisterForm() {
             email: registerEmail,
             password: registerPassword
         }
-
-        login(user)
 
         router.push('/')
 
