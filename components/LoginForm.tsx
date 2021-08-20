@@ -1,17 +1,18 @@
 import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
-import { FormEvent, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import Button1 from './Button1'
 
+interface ICredentials {
+    email: string
+    password: string
+}
 
 export default function LoginForm() {
+    const {register, handleSubmit} = useForm()
     const router = useRouter()
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
 
-    const login = async (event: FormEvent) => {
-
-        event.preventDefault()
+    async function signIn({email, password}: ICredentials) {
         
         const response = await fetch('https://valorize.herokuapp.com/user/auth/login', {
             method: 'POST',
@@ -26,13 +27,12 @@ export default function LoginForm() {
 
         const result = await response.json()
 
-        // console.log(result)
-        // return
-
         if(result.error){
             alert(result.error)
             return
         }
+
+        // efetua o login...
 
         router.push('/')
 
@@ -46,16 +46,30 @@ export default function LoginForm() {
                     <h4>Login</h4>
                 </div>
 
-                <form onSubmit={login} method="post">
+                <form onSubmit={handleSubmit(signIn)} method="post">
 
                     <div className="input">
                         <label htmlFor="email">E-mail</label>
-                        <input id="email" onChange={event => setEmail(event.target.value)} type="email" />
+                        <input
+                            {...register('email')}
+                            id="email"
+                            name="email"
+                            type="email"
+                            required
+                            placeholder="e-mail"
+                        />
                     </div>
 
                     <div className="input">
                         <label htmlFor="password">Senha</label>
-                        <input id="password" onChange={event => setPassword(event.target.value)} type="password" />
+                        <input
+                            {...register('password')}
+                            id="password"
+                            name="password"
+                            type="password"
+                            required
+                            placeholder="Password"
+                        />
                     </div>
 
                     <div className="send-button">
