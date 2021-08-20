@@ -12,27 +12,9 @@ export default function LoginForm() {
     const {register, handleSubmit} = useForm()
     const router = useRouter()
 
-    async function signIn({email, password}: ICredentials) {
+    async function signIn(data: ICredentials) {
         
-        const response = await fetch('https://valorize.herokuapp.com/user/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email,
-                password
-            })
-        })
-
-        const result = await response.json()
-
-        if(result.error){
-            alert(result.error)
-            return
-        }
-
-        // efetua o login...
+        // efetua o login
 
         router.push('/')
 
