@@ -1,8 +1,12 @@
-import { setCookie } from "nookies";
-import { createContext } from "react";
+import { useRouter } from "next/dist/client/router";
+import { setCookie, parseCookies } from "nookies";
+import { createContext, useEffect, useState } from "react";
 
 interface IAuthContext {
+    user: IUser | null
     isAuthenticated: boolean
+    login: (data: ICredentials) => Promise<void>
+    logout: () => Promise<void>
 }
 
 interface ICredentials {
@@ -10,12 +14,61 @@ interface ICredentials {
     password: string
 }
 
-const AuthContext = createContext({} as IAuthContext)
+interface IUser {
+    token: string
+    user: {
+        uid: number
+        name: string
+        email: string
+    }
+}
 
-export function AuthProvider({children}: any){
-    const isAuthenticated = false
+export const AuthContext = createContext({} as IAuthContext)
 
-    async function login({email, password}: ICredentials) {
+export function AuthProvider({ children }: any) {
+    const [user, setUser] = useState<IUser | null>(null)
+    const router = useRouter()
+    const isAuthenticated = !!user
+
+    useEffect(() => {verifyUser()}, [])
+
+    async function verifyUser() {
+        const { 'icompliment:user': userCookie } = parseCookies()
+
+        if (userCookie !== undefined) {
+
+            const userCookieObj = JSON.parse(userCookie)
+            const token = userCookieObj.token
+            const user = await verifyToken(token)
+            
+            setUser(user)
+        }
+    }
+
+    async function verifyToken(token: string) {
+        const response = await fetch('https://valorize.herokuapp.com/user/get', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                token
+            })
+
+        })
+
+        const verifyResult = await response.json()
+
+        if (await verifyResult.error) {
+            alert(verifyResult.error)
+            return
+        }
+
+        return verifyResult
+    }
+
+    async function login({ email, password }: ICredentials) {
 
         const response = await fetch('https://valorize.herokuapp.com/user/auth/login', {
             method: 'POST',
@@ -29,20 +82,34 @@ export function AuthProvider({children}: any){
 
         })
 
-        const user = await response.json()
+        const loginResult = await response.json()
 
-        if(user.error){
-            alert(user.error)
+        if (loginResult.error) {
+            alert(loginResult.error)
             return
         }
 
-        setCookie(undefined, 'icompliment:user', JSON.stringify(user), {
-            maxAge: 60 * 60 * 24 // 1 dia de duração
+        setCookie(undefined, 'icompliment:user', JSON.stringify(loginResult), {
+            maxAge: 60 * 60 * 24, // 1 dia de duração
+            sameSite: 'none',
+            secure: true
+        })
+
+        setUser(loginResult)
+
+        router.push('/')
+    }
+
+    async function logout() {
+        setCookie(undefined, 'icompliment:user', '', {
+            maxAge: 0, // invalidate the cookie
+            sameSite: 'none',
+            secure: true
         })
     }
 
     return (
-        <AuthContext.Provider value={{isAuthenticated}}>
+        <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
             {children}
         </AuthContext.Provider>
     )
