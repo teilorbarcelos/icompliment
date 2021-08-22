@@ -3,7 +3,7 @@ import { setCookie, parseCookies } from "nookies";
 import { createContext, useEffect, useState } from "react";
 
 interface IAuthContext {
-    user: IUser | null
+    auth: IUser | null
     isAuthenticated: boolean
     login: (data: ICredentials) => Promise<void>
     logout: () => Promise<void>
@@ -26,11 +26,11 @@ interface IUser {
 export const AuthContext = createContext({} as IAuthContext)
 
 export function AuthProvider({ children }: any) {
-    const [user, setUser] = useState<IUser | null>(null)
+    const [auth, setAuth] = useState<IUser | null>(null)
     const router = useRouter()
-    const isAuthenticated = !!user
+    const isAuthenticated = !!auth
 
-    useEffect(() => {verifyUser()}, [])
+    useEffect(() => { verifyUser() }, [])
 
     async function verifyUser() {
         const { 'icompliment:user': userCookie } = parseCookies()
@@ -40,8 +40,8 @@ export function AuthProvider({ children }: any) {
             const userCookieObj = JSON.parse(userCookie)
             const token = userCookieObj.token
             const user = await verifyToken(token)
-            
-            setUser(user)
+
+            setAuth(user)
         }
     }
 
@@ -95,7 +95,7 @@ export function AuthProvider({ children }: any) {
             secure: true
         })
 
-        setUser(loginResult)
+        setAuth(loginResult)
 
         router.push('/')
     }
@@ -106,10 +106,12 @@ export function AuthProvider({ children }: any) {
             sameSite: 'none',
             secure: true
         })
+
+        setAuth(null)
     }
 
     return (
-        <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ auth, isAuthenticated, login, logout }}>
             {children}
         </AuthContext.Provider>
     )

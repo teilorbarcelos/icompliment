@@ -1,18 +1,19 @@
-import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
-import { FormEvent, useState } from 'react'
+import { useContext } from 'react'
+import { useForm } from 'react-hook-form'
+import { AuthContext } from '../contexts/AuthContext'
 import Button1 from './Button1'
 
 export default function RegisterForm() {
-    const router = useRouter()
-    const [registerName, setRegisterName] = useState('')
-    const [registerEmail, setRegisterEmail] = useState('')
-    const [registerPassword, setRegisterPassword] = useState('')
-    const [registerPassword2, setRegisterPassword2] = useState('')
+    const {login} = useContext(AuthContext)
+    const {register, handleSubmit} = useForm()
 
-    const register = async (event: FormEvent) => {
-
-        event.preventDefault()
+    async function registerUser(data: any) {
+        
+        if(data.name.trim() == ''){
+            alert('Choose a valid name!')
+            return
+        }
         
         const response = await fetch('https://valorize.herokuapp.com/user/create', {
             method: 'POST',
@@ -20,31 +21,25 @@ export default function RegisterForm() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                name: registerName,
-                email: registerEmail,
-                password: registerPassword
+                name: data.name,
+                email: data.email,
+                password: data.password
             })
         })
 
         const result = await response.json()
-
-        // console.log(result)
-        // return
 
         if(result.error){
             alert(result.error)
             return
         }
 
-        // faz login automaticamente
-
         const user = {
-            email: registerEmail,
-            password: registerPassword
+            email: data.email,
+            password: data.password
         }
 
-        router.push('/')
-
+        login(user)
     }
 
     return (
@@ -55,26 +50,42 @@ export default function RegisterForm() {
                     <h4>Registrar-se</h4>
                 </div>
 
-                <form onSubmit={register} method="post">
+                <form onSubmit={handleSubmit(registerUser)} method="post">
 
                     <div className="input">
                         <label htmlFor="name">Nome</label>
-                        <input id="name" onChange={event => setRegisterName(event.target.value)} type="text" />
+                        <input
+                            {...register('name')}
+                            id="name"
+                            name="name"
+                            type="text" />
                     </div>
 
                     <div className="input">
                         <label htmlFor="email">E-mail</label>
-                        <input id="email" onChange={event => setRegisterEmail(event.target.value)} type="email" />
+                        <input
+                            {...register('email')}
+                            id="email"
+                            name="email"
+                            type="email" />
                     </div>
 
                     <div className="input">
                         <label htmlFor="password">Senha</label>
-                        <input id="password" onChange={event => setRegisterPassword(event.target.value)} type="password" />
+                        <input
+                            {...register('password')}
+                            id="password"
+                            name="password"
+                            type="password" />
                     </div>
 
                     <div className="input">
                         <label htmlFor="password2">Repita a senha</label>
-                        <input id="password2" onChange={event => setRegisterPassword2(event.target.value)} type="password" />
+                        <input
+                            {...register('password2')}
+                            id="password2"
+                            name="password2"
+                            type="password" />
                     </div>
 
                     <div className="send-button">
