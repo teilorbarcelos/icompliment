@@ -1,31 +1,20 @@
 import { createContext, useState } from "react";
 
 interface IComplimentsContext {
-    get: (user: IUser) => Promise<any>
+    get: (token: string) => Promise<any>
 }
 
-interface IUser {
-    token: string
-    user: {
-        uid: number
-        name: string
-        email: string
-    }
-}
 export const ComplimentsContext = createContext({} as IComplimentsContext)
 
 export function ComplimentsProvider({ children }: any) {
     
-    async function get(user: IUser) {
-        const response = await fetch('https://valorize.herokuapp.com/user/compliments', {
-            method: 'POST',
+    async function get(token: string) {
+        const response = await fetch('https://valorize.herokuapp.com/compliments/list', {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${user?.token}`
-            },
-            body: JSON.stringify({
-                user: user?.user.uid
-            })
+                'Authorization': `Bearer ${token}`
+            }
 
         })
 

@@ -7,7 +7,7 @@ export default function SendedCompliments() {
     const {get} = useContext(ComplimentsContext)
 
     if(auth){
-        const SendedCompliments = get(auth)
+        const SendedCompliments = get(auth.token)
     }
 
 
