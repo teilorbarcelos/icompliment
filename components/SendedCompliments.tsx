@@ -1,18 +1,29 @@
 import { useContext, useState } from "react"
 import { AuthContext } from "../contexts/AuthContext"
 
+interface ICompliments {
+    complimentsSend: [
+        {
+
+        }
+    ]
+}
+
 export default function SendedCompliments() {
     const { auth } = useContext(AuthContext)
-    let compliments: any = undefined
-    let val
+    const [compliments, setCompliments] = useState()
 
-    async function getCompliments(){
+    if (auth) {
+        getCompliments(auth.token)
+        // console.log(compliments)
+    }
 
+    async function getCompliments(token: string) {
         const response = await fetch('https://valorize.herokuapp.com/compliments/list', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${auth?.token}`
+                'Authorization': `Bearer ${token}`
             }
     
         })
@@ -23,58 +34,19 @@ export default function SendedCompliments() {
             alert(result.error)
             return
         }
-        
-        compliments = result
 
-        // console.log(compliments.complimentsSend)
-
+        setCompliments(result)
     }
 
-    getCompliments().then(() => {
-
-        if(compliments){
-            console.log(compliments.complimentsSend)
-        }
-
-    })
-
     return (
-        <>
-        
-            
-        
-        </>
+        <div className="sended-complaiments">
+            <h4>
+                Elogios enviados
+            </h4>
+
+            {/* {sendedCompliments} */}
+
+
+        </div>
     )
-
-    // const { compliments } = useContext(ComplimentsContext)
-
-    // let sendedCompliments = null
-
-    // if (compliments && compliments.complimentsSend.length > 0) {
-    //     sendedCompliments = compliments.complimentsSend.map((compliment: ICompliment | null) => {
-    //         return (
-    //             <div key={compliment?.id} className="sended-compliment">
-    //                 <h4>#{compliment?.message}</h4>
-    //             </div>
-    //         )
-    //     })
-    // }
-
-    // return (
-    //     <>
-    //         {sendedCompliments &&
-    //             <>
-    //                 <div className="sended-complaiments">
-    //                     <h4>
-    //                         Elogios enviados
-    //                     </h4>
-
-    //                     {sendedCompliments}
-
-
-    //                 </div>
-    //             </>
-    //         }
-    //     </>
-    // )
 }
