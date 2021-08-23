@@ -6,14 +6,11 @@ import '../styles/_spacing.scss'
 import '../styles/_typography.scss'
 import '../styles/_layout.scss'
 import '../styles/globals.scss'
-import { ComplimentsProvider } from '../contexts/ComplimentsContext'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
-      <ComplimentsProvider>
-        <Component {...pageProps} />
-      </ComplimentsProvider>
+      <Component {...pageProps} />
     </AuthProvider>
   )
 }
