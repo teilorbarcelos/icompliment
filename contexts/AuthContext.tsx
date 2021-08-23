@@ -42,7 +42,7 @@ export function AuthProvider({ children }: any) {
             const user = await verifyToken(token)
 
             if(user){
-                setAuth(userCookieObj)
+                setAuth(user)
             }
         }
     }

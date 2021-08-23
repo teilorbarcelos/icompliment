@@ -2,10 +2,13 @@ import Link from 'next/link'
 import { useContext } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 import Button1 from './Button1'
+import Navbar from './Navbar'
+import ReceivedCompliments from './ReceivedCompliments'
+import SendedCompliments from './SendedCompliments'
 
 
 export default function Dashboard() {
-    const {auth, logout} = useContext(AuthContext)
+    const { auth, logout } = useContext(AuthContext)
 
     let dashboard = (<>
         <div className="login-navbar mb-9">
@@ -34,11 +37,16 @@ export default function Dashboard() {
         </div>
     </>)
 
-    if(auth){
+    if (auth) {
         dashboard = (<>
-            <div>
-                <div><h5>{auth?.user?.name}</h5></div>
-                <Button1 onClick={() => logout()}>Logout</Button1>
+            <div className="profile">
+
+                <Navbar />
+
+                <SendedCompliments />
+
+                <ReceivedCompliments />
+
             </div>
         </>)
     }

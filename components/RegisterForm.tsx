@@ -1,17 +1,38 @@
+import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { AuthContext } from '../contexts/AuthContext'
 import Button1 from './Button1'
 
+interface IData {
+    name: string
+    email: string
+    password: string
+    password2: string
+}
+
 export default function RegisterForm() {
-    const {login} = useContext(AuthContext)
+    const router = useRouter()
+    const {auth, login} = useContext(AuthContext)
     const {register, handleSubmit} = useForm()
 
-    async function registerUser(data: any) {
+    if(auth){
+        router.push('/')
+    }
+
+    async function registerUser({name, email, password, password2}: IData) {
         
-        if(data.name.trim() == ''){
-            alert('Choose a valid name!')
+        if(name.trim() == '' ||
+            email.trim() == '' ||
+            password.trim() == '' ||
+            password2.trim() == ''){
+            alert('Missing some information!')
+            return
+        }
+
+        if(password !== password2){
+            alert("The passwords doesn't match!")
             return
         }
         
@@ -21,9 +42,9 @@ export default function RegisterForm() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                name: data.name,
-                email: data.email,
-                password: data.password
+                name,
+                email,
+                password
             })
         })
 
@@ -35,8 +56,8 @@ export default function RegisterForm() {
         }
 
         const user = {
-            email: data.email,
-            password: data.password
+            email,
+            password
         }
 
         login(user)

@@ -13,7 +13,11 @@ interface ICredentials {
 export default function LoginForm() {
     const {register, handleSubmit} = useForm()
     const router = useRouter()
-    const {login} = useContext(AuthContext)
+    const {auth, login} = useContext(AuthContext)
+
+    if(auth){
+        router.push('/')
+    }
 
     async function signIn(data: ICredentials) {
         
