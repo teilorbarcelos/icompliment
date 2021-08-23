@@ -35,13 +35,15 @@ export function AuthProvider({ children }: any) {
     async function verifyUser() {
         const { 'icompliment:user': userCookie } = parseCookies()
 
-        if (userCookie !== undefined) {
+        if (userCookie) {
 
             const userCookieObj = JSON.parse(userCookie)
             const token = userCookieObj.token
             const user = await verifyToken(token)
 
-            setAuth(user)
+            if(user){
+                setAuth(userCookieObj)
+            }
         }
     }
 

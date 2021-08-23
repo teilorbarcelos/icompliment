@@ -37,8 +37,8 @@ export default function Dashboard() {
     if(auth){
         dashboard = (<>
             <div>
-                <div>{auth?.user?.name}</div>
-                <Button1 onClick={() => {logout()}}>Logout</Button1>
+                <div><h5>{auth?.user?.name}</h5></div>
+                <Button1 onClick={() => logout()}>Logout</Button1>
             </div>
         </>)
     }
