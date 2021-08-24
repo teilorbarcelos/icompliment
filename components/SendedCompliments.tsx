@@ -1,41 +1,40 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../contexts/AuthContext"
-
-interface ICompliments {
-    complimentsSend: [
-        {
-
-        }
-    ]
-}
 
 export default function SendedCompliments() {
     const { auth } = useContext(AuthContext)
-    const [compliments, setCompliments] = useState()
+    const [compliments, setCompliments] = useState<any>(null)
 
     if (auth) {
         getCompliments(auth.token)
-        // console.log(compliments)
     }
+
 
     async function getCompliments(token: string) {
         const response = await fetch('https://valorize.herokuapp.com/compliments/list', {
             method: 'GET',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
-    
+
         })
-    
+
         const result = await response.json()
-    
+
         if (await result.error) {
             alert(result.error)
             return
         }
 
-        setCompliments(result)
+        const complimentsList = result.complimentsSend.map((compliment: any) => {
+            return (
+                <h4 key={compliment.id}>#{compliment.message}</h4>
+            )
+        })
+
+        setCompliments(complimentsList)
     }
 
     return (
@@ -44,7 +43,7 @@ export default function SendedCompliments() {
                 Elogios enviados
             </h4>
 
-            {/* {sendedCompliments} */}
+            {compliments}
 
 
         </div>
