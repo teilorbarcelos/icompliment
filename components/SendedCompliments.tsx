@@ -8,6 +8,20 @@ interface ICompliment {
     tag_id: number
     user_receiver: number
     user_sender: number
+    userSender: IUser
+    userReceiver: IUser
+    tag: ITag
+}
+
+interface IUser {
+    id: number
+    name: string
+}
+
+interface ITag {
+    id: number
+    name: string
+    nameCustom: string
 }
 
 export default function SendedCompliments() {
@@ -15,15 +29,16 @@ export default function SendedCompliments() {
     const [compliments, setCompliments] = useState<any>(null)
 
     if (auth) {
-        get(auth.token)
+        verifyCompliments(auth.token)
     }
 
-    async function get(token: string){
+    async function verifyCompliments(token: string){
         const result = await getCompliments(token)
+        // console.log(result)
         
-        const complimentsList = result?.complimentsSend.map((compliment: ICompliment) => {
+        const complimentsList = result?.complimentsSended.map((compliment: ICompliment) => {
             return (
-                <h4 key={compliment.id}>#{compliment.message}</h4>
+                <h4 key={compliment.id}>{compliment.tag.nameCustom}</h4>
             )
         })
 

@@ -4,12 +4,26 @@ interface ICompliment {
     tag_id: number
     user_receiver: number
     user_sender: number
+    userSender: IUser
+    userReceiver: IUser
+    tag: ITag
+}
+
+interface IUser {
+    id: number
+    name: string
+}
+
+interface ITag {
+    id: number
+    name: string
+    nameCustom: string
 }
 
 interface ICompliments {
     error: string
     complimentsReceived: [ICompliment]
-    complimentsSend: [ICompliment]
+    complimentsSended: [ICompliment]
 }
 
 export default async function getCompliments(token: string) {

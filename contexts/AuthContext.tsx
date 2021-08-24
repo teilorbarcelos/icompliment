@@ -64,6 +64,8 @@ export function AuthProvider({ children }: any) {
 
         if (await verifyResult.error) {
             alert(verifyResult.error)
+            logout()
+            router.push('/')
             return
         }
 
