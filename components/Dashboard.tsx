@@ -28,7 +28,7 @@ export default function Dashboard() {
                 <h4>
                     <Link href="/registered_users">
                         <a>
-                            Usuários cadastrados
+                            Usuários registrados
                         </a>
                     </Link>
                 </h4>
