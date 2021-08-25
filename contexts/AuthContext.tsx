@@ -20,6 +20,7 @@ interface IUser {
         uid: number
         name: string
         email: string
+        admin: boolean
     }
 }
 
@@ -112,6 +113,8 @@ export function AuthProvider({ children }: any) {
         })
 
         setAuth(null)
+
+        router.push('/')
     }
 
     return (

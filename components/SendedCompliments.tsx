@@ -46,7 +46,7 @@ export default function SendedCompliments() {
     }
 
     return (
-        <div className="sended-complaiments">
+        <div className="user-complaiments">
             <h4>
                 Elogios enviados
             </h4>
