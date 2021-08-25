@@ -3,11 +3,6 @@ interface IUser {
     name: string
     email: string
     admin: boolean
-
-}
-
-interface IUsers extends Array<IUser>{
-    error:string
 }
 
 export default async function getUsers(token: string) {
@@ -21,12 +16,12 @@ export default async function getUsers(token: string) {
 
     })
 
-    const result: IUsers = await response.json()
+    const result: IUser[] = await response.json()
 
-    if (result.error) {
-        alert(result.error)
-        return
-    }
+    // if (result.error) {
+    //     alert(result.error)
+    //     return
+    // }
 
     return result
 }
