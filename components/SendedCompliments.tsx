@@ -32,13 +32,22 @@ export default function SendedCompliments() {
         verifyCompliments(auth.token)
     }
 
-    async function verifyCompliments(token: string){
+    async function verifyCompliments(token: string) {
         const result = await getCompliments(token)
-        // console.log(result)
-        
+
         const complimentsList = result?.complimentsSended.map((compliment: ICompliment) => {
             return (
-                <h4 key={compliment.id}>{compliment.tag.nameCustom}</h4>
+                <div className="compliment" key={compliment.id}>
+                    <div className="header">
+                        <h5>Para: {compliment.userReceiver.name}</h5>
+                        <h6 className="mask">{compliment.tag.nameCustom}</h6>
+                    </div>
+                    <div className="compliment-message">
+                        <h6>
+                            {`"${compliment.message}"`}
+                        </h6>
+                    </div>
+                </div>
             )
         })
 
@@ -46,10 +55,12 @@ export default function SendedCompliments() {
     }
 
     return (
-        <div className="user-complaiments">
-            <h4>
-                Elogios enviados
-            </h4>
+        <div className="user-compliments">
+            <div>
+                <h4>
+                    Elogios enviados:
+                </h4>
+            </div>
 
             {compliments}
 

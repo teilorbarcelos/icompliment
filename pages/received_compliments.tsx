@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import Background from '../components/Background'
 import ReceivedCompliments from '../components/ReceivedCompliments'
+import Navbar from '../components/Navbar'
 
 const received_compliments: NextPage = () => {
     return (
@@ -25,15 +26,21 @@ const received_compliments: NextPage = () => {
 
             <main>
 
-                <h5>
-                    <Link href="/">
-                        <a>
-                            Dashboard
-                        </a>
-                    </Link>
-                </h5>
-                
-                <h4>Em Breve!</h4>
+                <Navbar />
+
+                <div className="page mt-8">
+
+                    <h5>
+                        <Link href="/">
+                            <a>
+                                Dashboard
+                            </a>
+                        </Link>
+                    </h5>
+
+                    <ReceivedCompliments />
+
+                </div>
 
             </main>
         </>

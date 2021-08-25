@@ -28,15 +28,19 @@ const sended_compliments: NextPage = () => {
 
                 <Navbar />
 
-                <h5>
-                    <Link href="/">
-                        <a>
-                            Dashboard
-                        </a>
-                    </Link>
-                </h5>
+                <div className="page mt-8">
 
-                <SendedCompliments />
+                    <h5>
+                        <Link href="/">
+                            <a>
+                                Dashboard
+                            </a>
+                        </Link>
+                    </h5>
+
+                    <SendedCompliments />
+
+                </div>
 
             </main>
         </>
