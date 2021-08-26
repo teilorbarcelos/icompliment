@@ -1,10 +1,17 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../contexts/AuthContext"
 import getUsers from "../hooks/getUsers"
+import Link from 'next/link'
 
 interface IUser {
+    token: string
+    user: IUserInfo
+}
+
+interface IUserInfo {
     id: number
     name: string
+    email: string
     admin: boolean
 }
 
@@ -19,11 +26,40 @@ export default function RegisteredUsers() {
     async function verifyUsers(token: string) {
         const result = await getUsers(token)
 
-        const usersList = result?.map((user: IUser) => {
-            return (
-                <div className="user" key={user.id}>
-                    <h5>{user.name}</h5>
+        result.sort(
+            (a, b) => (
+                a.name.toUpperCase() < b.name.toUpperCase() ? -1 :
+                    a.name.toUpperCase() > b.name.toUpperCase() ? 1 :
+                        0
+            )
+        )
+
+        const usersList = result?.map((user: IUserInfo) => {
+
+            let userHTML = (
+                <div className="user" title="Enviar elogio ou agradecimento" key={user.id}>
+                    <h5>
+                        <Link href={`/send_compliment/${user.id}`}>
+                            <a>
+                                {user.name}
+                            </a>
+                        </Link>
+                    </h5>
                 </div>
+            )
+
+            if (auth?.user.id == user.id) {
+                userHTML = (
+                    <div className="user" key={user.id}>
+                        <h5>
+                            {user.name}
+                        </h5>
+                    </div>
+                )
+            }
+
+            return (
+                userHTML
             )
         })
 

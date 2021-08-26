@@ -17,7 +17,7 @@ interface ICredentials {
 interface IUser {
     token: string
     user: {
-        uid: number
+        id: number
         name: string
         email: string
         admin: boolean
