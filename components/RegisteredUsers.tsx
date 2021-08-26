@@ -143,7 +143,7 @@ export default function RegisteredUsers() {
 
             let userHTML = (
                 <div
-                    className="user"
+                    className="user pointer"
                     onClick={() => complimentModal(user)}
                     title="Enviar elogio ou agradecimento"
                     key={user.id}
