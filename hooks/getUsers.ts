@@ -23,5 +23,11 @@ export default async function getUsers(token: string) {
     //     return
     // }
 
-    return result
+    return result.sort(
+        (a, b) => (
+            a.name.toUpperCase() < b.name.toUpperCase() ? -1 :
+                a.name.toUpperCase() > b.name.toUpperCase() ? 1 :
+                    0
+        )
+    )
 }

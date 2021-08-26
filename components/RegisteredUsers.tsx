@@ -20,12 +20,6 @@ interface ICompliment {
 
 }
 
-interface ITag {
-    id: number
-    name: string
-    nameCustom: string
-}
-
 export default function RegisteredUsers() {
     const { register, handleSubmit } = useForm()
     const { auth } = useContext(AuthContext)
@@ -33,16 +27,13 @@ export default function RegisteredUsers() {
     const [sendCompliment, setSendCompliment] = useState<any>(null)
     const [tags, setTags] = useState<any>(null)
 
+    if (auth) {
+        verifyUsers(auth.token)
+        updateTags(auth.token)
+    }
+
     async function updateTags(token: string) {
         const result = await getTags(token)
-
-        result.sort(
-            (a, b) => (
-                a.name.toUpperCase() < b.name.toUpperCase() ? -1 :
-                    a.name.toUpperCase() > b.name.toUpperCase() ? 1 :
-                        0
-            )
-        )
 
         const selectTag = result.map(tag => {
             return <option key={tag.id} value={tag.id}>{tag.name}</option>
@@ -96,6 +87,7 @@ export default function RegisteredUsers() {
                             <label htmlFor="tag">Tag: </label>
                             <select
                                 {...register('tag_id')}
+                                required
                                 name="tag_id"
                                 id="tag_id"
                             >
@@ -106,6 +98,7 @@ export default function RegisteredUsers() {
                             <label htmlFor="message">Mensagem: </label>
                             <textarea
                                 {...register('message')}
+                                required
                                 className="my-1"
                                 rows={7}
                                 name="message"
@@ -123,21 +116,8 @@ export default function RegisteredUsers() {
 
     }
 
-    if (auth) {
-        verifyUsers(auth.token)
-        updateTags(auth.token)
-    }
-
     async function verifyUsers(token: string) {
         const result = await getUsers(token)
-
-        result.sort(
-            (a, b) => (
-                a.name.toUpperCase() < b.name.toUpperCase() ? -1 :
-                    a.name.toUpperCase() > b.name.toUpperCase() ? 1 :
-                        0
-            )
-        )
 
         const usersList = result?.map((user: IUserInfo) => {
 

@@ -191,6 +191,29 @@ main {
     align-items: center;
 }
 
+.tags-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tags-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $gap-3 0;
+}
+
+.new-tag-form {
+    display: flex;
+    gap: $gap-1;
+    padding: $gap-3 0;
+
+    @media screen and (max-width: 600px) {
+        flex-direction: column;
+    }
+}
+
 /* Modal */
 .modal-overlay {
     width: 100%;

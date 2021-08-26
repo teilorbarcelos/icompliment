@@ -4,8 +4,9 @@ import Head from 'next/head'
 import Background from '../components/Background'
 import Navbar from '../components/Navbar'
 import RegisteredUsers from '../components/RegisteredUsers'
+import TagsList from '../components/TagsList'
 
-const received_compliments: NextPage = () => {
+const manage_tags: NextPage = () => {
     return (
         <>
 
@@ -17,7 +18,7 @@ const received_compliments: NextPage = () => {
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
                 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500&display=swap" rel="stylesheet" />
 
-                <title>Usuários cadastrados!</title>
+                <title>Lista de Tags!</title>
             </Head>
 
             {/* Background */}
@@ -38,7 +39,7 @@ const received_compliments: NextPage = () => {
                         </Link>
                     </h5>
                     
-                    <RegisteredUsers />
+                    <TagsList />
 
                 </div>
 
@@ -47,4 +48,4 @@ const received_compliments: NextPage = () => {
     )
 }
 
-export default received_compliments
+export default manage_tags
