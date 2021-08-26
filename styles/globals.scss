@@ -35,6 +35,10 @@ body {
   flex-direction: column;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .only-mobile {
   @media screen and (min-width: 960px) {
     display: none;
