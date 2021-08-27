@@ -40,7 +40,7 @@ You can register in the app and go to "Usuários registrados" (registered users)
  
 ## Features
  
-  - With this app, you can create a place that you can generate a nice workplace with your colleagues, promoting a filing of thanks to work together.
+  - With this app, you can create a place that you can generate a nice workplace with your colleagues, promoting a feeling of thanks to work together.
  
  
 ## Links
