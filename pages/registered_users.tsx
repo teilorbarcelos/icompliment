@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Background from '../components/Background'
 import Navbar from '../components/Navbar'
 import RegisteredUsers from '../components/RegisteredUsers'
+import Footer from '../components/Footer'
 
 const received_compliments: NextPage = () => {
     return (
@@ -41,6 +42,8 @@ const received_compliments: NextPage = () => {
                     <RegisteredUsers />
 
                 </div>
+
+                <Footer />
 
             </main>
         </>

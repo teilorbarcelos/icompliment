@@ -6,6 +6,7 @@ import Background from '../components/Background'
 import Dashboard from '../components/Dashboard'
 import Welcome from '../components/Welcome'
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 const Home: NextPage = () => {
   const { auth } = useContext(AuthContext)
@@ -40,6 +41,8 @@ const Home: NextPage = () => {
           </>
         }
 
+        <Footer />
+        
       </main>
     </>
   )

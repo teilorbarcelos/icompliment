@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import Button1 from './Button1'
 import { AuthContext } from '../contexts/AuthContext'
+import Footer from './Footer'
 
 interface ICredentials {
     email: string
@@ -74,6 +75,8 @@ export default function LoginForm() {
                     <div className="my-1">
                         <Link href="/"><a>Voltar para a página inicial!</a></Link>
                     </div>
+
+                    <Footer />
 
                 </div>
 

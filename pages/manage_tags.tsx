@@ -5,6 +5,7 @@ import Background from '../components/Background'
 import Navbar from '../components/Navbar'
 import RegisteredUsers from '../components/RegisteredUsers'
 import TagsList from '../components/TagsList'
+import Footer from '../components/Footer'
 
 const manage_tags: NextPage = () => {
     return (
@@ -42,6 +43,8 @@ const manage_tags: NextPage = () => {
                     <TagsList />
 
                 </div>
+
+                <Footer />
 
             </main>
         </>

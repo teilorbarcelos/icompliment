@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { AuthContext } from '../contexts/AuthContext'
 import Button1 from './Button1'
+import Footer from './Footer'
 
 interface IData {
     name: string
@@ -123,6 +124,8 @@ export default function RegisterForm() {
                     <div className="my-1">
                         <Link href="/"><a>Voltar para a página inicial!</a></Link>
                     </div>
+
+                    <Footer />
 
                 </div>
             </div>

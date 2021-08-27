@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Welcome() {
     return (
-        <>
+        <div className="welcome">
             <div className="login-navbar mb-9">
                 <div className="link">
                     <h4>
@@ -27,6 +27,6 @@ export default function Welcome() {
                 <h5 className="mb-5">Deixe aqui um elogio ou agradecimento a alguém!</h5>
                 <h5>ou receba um elogio você também!</h5>
             </div>
-        </>
+        </div>
     )
 }
